@@ -43,12 +43,19 @@ def encode(number, base):
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
-    # TODO: Encode number in binary (base 2)
-    # ...
-    # TODO: Encode number in hexadecimal (base 16)
-    # ...
-    # TODO: Encode number in any base (2 up to 36)
-    # ...
+    #we want the number we get to make it a string if necessary
+    all_digits = {0:'0', 1:'1', 2:'2', 3:'3', 4:'4', 5:'5', 6:'6', 7:'7', 8:'8', 9:'9', 10:'a', 11:'b', 12:'c', 13:'d', 14:'e', 15:'f', 16:'g', 17:'h', 18:'i', 19:'j', 20:'k', 21:'l', 22:'m', 23:'n', 24:'o', 25:'p', 26:'q', 27:'r', 28:'s', 29:'t', 30:'u', 31:'v', 32:'w', 33:'x', 34:'y', 35:'z'}
+
+    num_base_any = ''
+    while number is not 0:
+        #get the modulus that is the last value of the string
+        modulus_number = number % base
+        to_append_value = all_digits[modulus_number]
+        num_base_any = to_append_value + num_base_any
+        num_minus_modulus = number - modulus_number
+        number = int(num_minus_modulus/base)
+
+    return num_base_any
 
 
 def convert(digits, base1, base2):
