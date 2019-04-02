@@ -1,5 +1,5 @@
 #!python
-
+import math
 import string
 # Hint: Use these string constants to encode/decode hexadecimal digits and more
 # string.digits is '0123456789'
@@ -67,7 +67,7 @@ def convert(digits, base1, base2):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
-    
+
     #decode
     #number_any_base to number_base_10
     #decode(digits, base) -> get any number base and the base it is 
