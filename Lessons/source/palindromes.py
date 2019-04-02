@@ -1,11 +1,17 @@
 #!python
 
 import string
+from math import ceil
 # Hint: Use these string constants to ignore capitalization and/or punctuation
 # string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 
+def clean(palindrome):
+    palindrome = palindrome.lower()
+    palindrome = palindrome.replace(" ", "")
+    #Add punctuation remover
+    return palindrome
 
 def is_palindrome(text):
     """A string of characters is a palindrome if it reads the same forwards and
@@ -19,10 +25,25 @@ def is_palindrome(text):
 
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
-    pass
     # once implemented, change is_palindrome to call is_palindrome_iterative
     # to verify that your iterative implementation passes all tests
+    text = clean(text)
+    if text == '':
+        return True
 
+    if len(text) == 1:
+        return True
+
+    middle_position = ceil(len(text)/2)
+    position = 0
+    last_position = len(text)-1
+
+    while text[position] == text[last_position]:
+        if position == middle_position:
+            return True
+        position += 1
+        last_position -= 1
+    return False
 
 def is_palindrome_recursive(text, left=None, right=None):
     # TODO: implement the is_palindrome function recursively here
