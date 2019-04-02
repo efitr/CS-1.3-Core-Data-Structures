@@ -17,12 +17,21 @@ def decode(digits, base):
     return: int -- integer representation of number (in base 10)"""
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
-    # TODO: Decode digits from binary (base 2)
-    # ...
-    # TODO: Decode digits from hexadecimal (base 16)
-    # ...
-    # TODO: Decode digits from any base (2 up to 36)
-    # ...
+
+    #key string and value number
+    all_digits = {"0":0, "1":1, "2":2, "3":3, "4":4, "5":5, "6":6, "7":7, "8":8, "9":9, "A":10, "B":11, "C":12, "D":13, "E":14, "F":15, "G":16, "H":17, "I":18, "J":19, "K":20, "L":21, "M":22, "N":23, "O":24, "P":25, "Q":26, "R":27, "S":28, "T":29, "U":30, "V":31, "W":32, "X":33, "Y":34, "Z":35}
+
+    #digits to string
+    digits = str(digits).upper()
+
+    num_base_10 = 0
+    #repite cada string en digitos
+    for index, num in enumerate(digits[::-1]):
+        # get the value for the given digit 
+        current_digit = all_digits[num]
+        num_base_10 += current_digit * math.pow(base, index)
+
+    return num_base_10
 
 
 def encode(number, base):
