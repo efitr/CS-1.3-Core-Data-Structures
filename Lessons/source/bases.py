@@ -26,10 +26,10 @@ def decode(digits, base):
 
     num_base_10 = 0
     #repite cada string en digitos
-    for index, num in enumerate(digits[::-1]):
+    for power, num in enumerate(digits[::-1]):
         # get the value for the given digit 
         current_digit = all_digits[num]
-        num_base_10 += current_digit * math.pow(base, index)
+        num_base_10 += current_digit * math.pow(base, power)
 
     return num_base_10
 
