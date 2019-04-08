@@ -18,7 +18,7 @@ def linear_search_iterative(array, item):
 
 def linear_search_recursive(array, item, index=0):
     if index == len(array):
-            return None  # item was not found in the array
+        return None  # item was not found in the array
     if array[index] == item:
         return index  # item was found at index
     return linear_search_recursive(array, item, index + 1)
@@ -71,14 +71,27 @@ def binary_search_recursive(array, item, left=None, right=None):
     if item == array[half]:
         return half
 
-    if item == array[right]:
-        return right
-    if item > array[half]:
-        return binary_search_recursive(array, item, half + 1, right)
+    elif item > array[half]:
+        if item == array[right]:
+            return right
+        left = half + 1
+        
+    elif item < array[half]:
+        if item == array[left]:
+            return left
+        right = half - 1
 
-    if item == array[left]:
-        return left
-    if item < array[half]:
-        return binary_search_recursive(array, item, left, half - 1)
+    # if item == array[right]:
+    #     return right
+    # if item > array[half]:
+    #     left = half + 1
+        # return binary_search_recursive(array, item, half + 1, right)
+
+    # if item == array[left]:
+    #     return left
+    # if item < array[half]:
+    #     right = half - 1
+        # return binary_search_recursive(array, item, left, half - 1)
+    return binary_search_recursive(array, item, left, right)
     
 
