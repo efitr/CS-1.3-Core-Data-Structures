@@ -9,7 +9,7 @@ def factorial(n):
     # implement factorial_iterative and factorial_recursive below, then
     # change this to call your implementation to verify it passes all tests
     # return factorial_iterative(n)
-    return factorial_recursive1(n)
+    return factorial_iterative2(n)
 
 
 def factorial_iterative(n):
@@ -36,15 +36,15 @@ def factorial_iterative1(n):
 
     return final_product
 
-
-def factorial_recursive(n):
-    # check if n is one of the base cases
-    if n == 0 or n == 1:
+# range also does the calculation from 0
+def factorial_iterative2(n):
+    if n == 1 or:
         return 1
-    # check if n is an integer larger than the base cases
-    elif n > 1:
-        # call function recursively
-        return n * factorial_recursive(n - 1)
+    product = 0
+    for item in range(n):
+        product *= item
+
+    return product**n
 
 def factorial_recursive(n):
     # check if n is one of the base cases
