@@ -80,7 +80,7 @@ class LinkedList(object):
             raise ValueError('List index out of range: {}'.format(index))
         # DONE: Find the node at the given index and return its data
         node = self.head
-        for iterator in range(index):
+        for _ in range(index):
             node = node.next
         return node.data
 
