@@ -13,9 +13,21 @@ def contains(text, pattern):
             return True
         return False
 
-    # go through every letter in the text
-    for letter in text:
+    # MENTAL PLAN:
+        # Could I do a iterative and recursive solution
 
+    # go through every letter in the text
+    current_index_in_text = 0
+    pattern_index = 0
+    for letter in text:
+        # when the letter is the same has the first place of the pattern
+        if letter == pattern[0]:
+            # Here I'm trying to make it 
+            while letter[current_index_in_text] is pattern
+        current_index_in_text += 1
+        pattern_index = 0
+    
+    return False
 
 
 def find_index(text, pattern):
