@@ -21,7 +21,7 @@ class Set(object):
         index_of_member = 0
         for member in self.members: # O(n)
             if item is member:
-                if index_of_found_member is True:
+                if index_of_found_member is not None:
                     return True, index_of_member
                 return True
             index_of_member += 1
@@ -38,9 +38,9 @@ class Set(object):
     
     def remove(self, item):
         # remove element from this set, if present, or else raise KeyError
-        if self.contains(item, True) is (True, index_of_found_member):
-            self.dynamic_array.pop(index_of_found_member)
-            return
+        if self.contains(item, True) is (True, int(index_of_member):
+            self.members.pop([index_of_member])
+        raise ValueError('This item is not a member of this set: {}'.format(item))
         
 
 
