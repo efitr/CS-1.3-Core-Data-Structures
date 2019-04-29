@@ -16,16 +16,18 @@ class Set(object):
                     self.size += 1
 
     
-    # def contains(self, item, index_of_found_member = None):
-    def contains(self, item):
+    def contains(self, item, index_of_found_member = None):
+    # def contains(self, item):
         # return a boolean indicating whether element is in this set
-        # index_of_member = 0
+        if index_of_found_member is not None:
+            for index in range(self.size):
+                if self.members[index] is item:
+                    return True, index
+            return False
+                
         for member in self.members: # O(n)
             if item is member:
-                # if index_of_found_member is not None:
-                #     return True, index_of_member
                 return True
-            # index_of_member += 1
         return False
 
 
@@ -38,11 +40,10 @@ class Set(object):
 
     
     def remove(self, item):
-        pass
+        
         # remove element from this set, if present, or else raise KeyError
-        if self.contains(item, True) == True:
-
-        self.members.pop([index_of_member])
+        if self.contains(item, index_of_found_member) is not False:
+            self.members.pop([index_of_member])
         raise ValueError('This item is not a member of this set: {}'.format(item))
         pass
 
