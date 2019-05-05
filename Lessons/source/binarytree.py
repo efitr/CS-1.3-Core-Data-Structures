@@ -15,14 +15,14 @@ class BinaryTreeNode(object):
 
     def is_leaf(self):
         """Return True if this node is a leaf (has no children)."""
-        # TODO: Check if both left child and right child have no value
+        # Check if both left child and right child have no value
         if self.left and self.right is None:
             return True
         return False
 
     def is_branch(self):
         """Return True if this node is a branch (has at least one child)."""
-        # TODO: Check if either left child or right child has a value
+        # Check if either left child or right child has a value
         if self.left or self.right is not None:
             return True
         return False
@@ -30,16 +30,24 @@ class BinaryTreeNode(object):
     def height(self):
         """Return the height of this node (the number of edges on the longest
         downward path from this node to a descendant leaf node).
-        TODO: Best and worst case running time: ??? under what conditions?"""
+        Running time: O(n), n been the number of level to the furthest node on the tree 
+        Best: When its balanced you go the least further on the tree
+        Worst: When its unbalanced you go deeper than its necessary because the depht
+        is unrelated to the actual amount of items on the tree.
+        """
         height_left = 0
         height_right = 0
         
+        # Recursively go has many level has possible to the left
         if self.left is not None:
             height_left = self.height(self.left) + 1
         
+        # Recursively go has many level has possible to the right 
         if self.right is not None:
             height_right = self.height(self.right) + 1
         
+        # Depending on which side ended been the longest you get 
+        # the corresponding value
         if height_left > height_right:
             return height_left
 
@@ -69,7 +77,9 @@ class BinarySearchTree(object):
         downward path from this tree's root node to a descendant leaf node).
         TODO: Best and worst case running time: ??? under what conditions?"""
         # TODO: Check if root node has a value and if so calculate its height
-        ...
+        if self.root is None:
+            return 0
+        return self.root.height()
 
     def contains(self, item):
         """Return True if this binary search tree contains the given item.
