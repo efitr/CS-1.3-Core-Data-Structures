@@ -30,7 +30,7 @@ class BinaryTreeNode(object):
     def height(self):
         """Return the height of this node (the number of edges on the longest
         downward path from this node to a descendant leaf node).
-        Running time: O(n), n been the number of level to the furthest node on the tree 
+        Running time: O(n), n been the number of levels to the furthest node on the tree 
         Best: When its balanced you go the least further on the tree
         Worst: When its unbalanced you go deeper than its necessary because the depht
         is unrelated to the actual amount of items on the tree.
@@ -75,16 +75,22 @@ class BinarySearchTree(object):
     def height(self):
         """Return the height of this tree (the number of edges on the longest
         downward path from this tree's root node to a descendant leaf node).
-        TODO: Best and worst case running time: ??? under what conditions?"""
-        # TODO: Check if root node has a value and if so calculate its height
+        Running time: O(n), n been the number of levels to the furthest node on the tree 
+        Best: When its balanced you go the least further on the tree
+        Worst: When its unbalanced you go deeper than its necessary because the depht
+        is unrelated to the actual amount of items on the tree.
+        """
+
         if self.root is None:
             return 0
         return self.root.height()
 
     def contains(self, item):
         """Return True if this binary search tree contains the given item.
-        TODO: Best case running time: ??? under what conditions?
-        TODO: Worst case running time: ??? under what conditions?"""
+        Best: When its balanced you go the least further on the tree
+        Worst: When its unbalanced you go deeper than its necessary because the depht
+        is unrelated to the actual amount of items on the tree.
+        """
         # Find a node with the given item, if any
         node = self._find_node_recursive(item, self.root)
         # Return True if a node was found, or False
@@ -98,7 +104,7 @@ class BinarySearchTree(object):
         # Find a node with the given item, if any
         node = self._find_node_recursive(item, self.root)
         # TODO: Return the node's data if found, or None
-        return node.data if ... else None
+        return node.data if is node is not None else None
 
     def insert(self, item):
         """Insert the given item in order into this binary search tree.
