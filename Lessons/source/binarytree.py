@@ -167,7 +167,7 @@ class BinarySearchTree(object):
             # Not found (base case)
             return None
         # TODO: Check if the given item matches the node's data
-        elif node.is_leaf():
+        elif item == node.data:
             # Return the found node
             return node
         # TODO: Check if the given item is less than the node's data
