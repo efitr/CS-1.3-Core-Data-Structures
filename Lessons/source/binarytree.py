@@ -141,17 +141,17 @@ class BinarySearchTree(object):
         # Loop until we descend past the closest leaf node
         while node is not None:
             # TODO: Check if the given item matches the node's data
-            if 
+            if node.is_leaf():
                 # Return the found node
                 return node
             # TODO: Check if the given item is less than the node's data
-            elif ...:
+            elif item < node.data:
                 # TODO: Descend to the node's left child
-                node = ...
+                node = node.left
             # TODO: Check if the given item is greater than the node's data
-            elif ...:
+            elif item > node.data:
                 # TODO: Descend to the node's right child
-                node = ...
+                node = node.right
         # Not found
         return None
 
