@@ -341,8 +341,8 @@ class BinarySearchTree(object):
     def _traverse_level_order_iterative(self, start_node, visit):
         """Traverse this binary tree with iterative level-order traversal (BFS).
         Start at the given node and visit each node with the given function.
-        TODO: Running time: ??? Why and under what conditions?
-        TODO: Memory usage: ??? Why and under what conditions?"""
+        TODO: Running time: O(n) Why and under what conditions?
+        TODO: Memory usage: O(n) Why and under what conditions?"""
         # TODO: Create queue to store nodes not yet traversed in level-order
         queue = LinkedQueue()
         # TODO: Enqueue given starting node
