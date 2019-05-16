@@ -1,6 +1,8 @@
 #!python
 
-def contains(text, pattern):
+# make it be recursive and iterative
+#   The Recursive handles the index, 
+def contains(text, pattern, index=None):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
@@ -15,29 +17,17 @@ def contains(text, pattern):
 
     if pattern == '':
         return True
-
-    # MENTAL PLAN:
-        # Could I do a iterative and recursive solution
-    # There are two problems:
-        # Going through every single letter in the string
-        # if the letters match 
-
-    # go through every letter in the text
-    for index, letter in enumerate(text):
-        # when the letter is the same has the first place of the pattern
-        # The pattern might be here
-        current_pattern_position = 0
-        #if the current letter equals pattern at position 0
-        if letter == pattern[current_pattern_position]:
-            #to not break the logic of the first for in case the pattern is not found
-            index_in_pattern = index #we create a new index position for the text
-            while text[index_in_pattern] == pattern[current_pattern_position]:
-                index_in_pattern += 1
-                current_pattern_position += 1
-
-                if current_pattern_position == len(pattern):
-                    return True
     
+    # from 0 to whatever is the lenght of the text - 1
+    for index in range(len(text) - 1):
+
+        if text[index] is pattern[0]:
+            for pattern_index, letter in enumerate(pattern):
+                if text[index + pattern_index] is not letter:
+                    break
+                if pattern_index is len(pattern) - 1:
+                    return True
+            
     return False
 
 
@@ -51,6 +41,9 @@ def find_index(text, pattern):
     if pattern == '':
         return 0
 
+    if text == pattern:
+        return True
+    
     for index, letter in enumerate(text):
 
         current_pattern_position = 0
