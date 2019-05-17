@@ -23,8 +23,7 @@ class LinkedQueue(object):
         """Return True if this queue is empty, or False otherwise."""
         if self.list.size == 0:
             return True
-        else:
-            return False
+        return False
 
     def length(self):
         """Return the number of items in this queue."""
@@ -32,7 +31,7 @@ class LinkedQueue(object):
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) – Why? You are appending at the end of the dynamic array (python 3 list)"""
         self.list.append(item)
 
     def front(self):
@@ -40,8 +39,7 @@ class LinkedQueue(object):
         or None if this queue is empty."""
         if self.list.is_empty():
             return None
-        else:
-            return self.list.get_at_index(0)
+        return self.list.get_at_index(0)
 
     def dequeue(self):
         """Remove and return the item at the front of this queue,
