@@ -25,7 +25,7 @@ class SetHashTable(object):
     def all_members(self):
         return self.hashtable.items()
 
-    def contains(self, item):
+    def is_member(self, item):
         return self.hashtable.contains(item)
 
     def insert(self, item):
