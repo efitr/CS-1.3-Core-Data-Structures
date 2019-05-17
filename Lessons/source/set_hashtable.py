@@ -23,10 +23,10 @@ class SetHashTable(object):
         pass
         
     def all_members(self):
-        pass
+        return self.hashtable.items()
 
     def contains(self, item):
-        pass
+        return self.hashtable.contains(item)
 
     def insert(self, item):
         pass
