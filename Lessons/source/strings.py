@@ -2,33 +2,17 @@
 
 # make it be recursive and iterative
 #   The Recursive handles the index, 
-def contains(text, pattern, index=None):
+def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement contains here (iteratively and/or recursively)
-    # edge cases
-    # the pattern is longer than the actual text
-    if len(text) <= len(pattern):
-        # If they are the same lenght and equal, it's true
-        if text == pattern:
-            return True
+
+    if find_index(text, pattern) is None:
         return False
+    return True
 
-    if pattern == '':
-        return True
-    
-    # from 0 to whatever is the lenght of the text - 1
-    for index in range(len(text) - 1):
 
-        if text[index] is pattern[0]:
-            for pattern_index, letter in enumerate(pattern):
-                if text[index + pattern_index] is not letter:
-                    break
-                if pattern_index is len(pattern) - 1:
-                    return True
-            
-    return False
 
 
 def find_index(text, pattern):
@@ -37,26 +21,36 @@ def find_index(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_index here (iteratively and/or recursively)
-    # Edge case
-    if pattern == '':
+    # This handles the edge cases
+    # if contains(text, pattern) is False:
+    #     return None
+    # This is more efficient, because does less operation, while the code in contains and find_index 
+    # is almost the same
+    if len(text) <= len(pattern):
+        # If they are the same lenght and equal, it's true
+        if text is pattern:
+            return 0
+        # return None
+
+    if pattern is '':
         return 0
-
-    if text == pattern:
-        return True
     
-    for index, letter in enumerate(text):
+    for index in range(len(text)):
 
-        current_pattern_position = 0
-        #if the current letter equals pattern at position 0
-        if letter == pattern[current_pattern_position]:
-            #to not break the logic of the first for in case the pattern is not found
-            index_in_pattern = index #we create a new index position for the text
-            while text[index_in_pattern] == pattern[current_pattern_position]:
-                index_in_pattern += 1
-                current_pattern_position += 1
+        # the len of the text is lower than index + pattern len
+        if len(text) < index + len(pattern):
+            return None
 
-                if current_pattern_position == len(pattern):
+        if text[index] is pattern[0]:
+            for pattern_index, letter in enumerate(pattern):
+
+                if text[index + pattern_index] is not letter:
+                    break
+                if pattern_index is len(pattern) - 1:
                     return index
+            
+    return None
+
 
 def find_all_indexes(text, pattern):
     """Return a list of starting indexes of all occurrences of pattern in text,
@@ -66,26 +60,32 @@ def find_all_indexes(text, pattern):
     # TODO: Implement find_all_indexes here (iteratively and/or recursively)
     if contains(text, pattern) is False:
         return []
-    
-    position_array = []
+        
+    all_indexes = []
+
     if pattern == '':
-        return True
+        for index in range(len(pattern)):
+            print('This is the index', index)
+            all_indexes.append(index)
+        return all_indexes
 
-    for index, letter in enumerate(text):
+    for index in range(len(text)):
 
-        current_pattern_position = 0
-        #if the current letter equals pattern at position 0
-        if letter == pattern[current_pattern_position]:
-            #to not break the logic of the first for in case the pattern is not found
-            
-            index_in_pattern = index #we create a new index position for the text
-            while text[index_in_pattern] == pattern[current_pattern_position]:
-                index_in_pattern += 1
-                current_pattern_position += 1
+        # the len of the text is lower than index + pattern len
+        if len(text) < index + len(pattern):
+            return None
 
-                if current_pattern_position == len(pattern):
-                    position_array.append(index)
-    return position_array
+        if text[index] is pattern[0]:
+            for pattern_index, letter in enumerate(pattern):
+
+                if text[index + pattern_index] is not letter:
+                    break
+                if pattern_index is len(pattern) - 1:
+                    all_indexes.append(index)
+
+    return all_indexes
+    
+
 
 def test_string_algorithms(text, pattern):
     found = contains(text, pattern)
