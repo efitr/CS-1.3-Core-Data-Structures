@@ -80,8 +80,9 @@ class LinkedList(object):
             raise ValueError('List index out of range: {}'.format(index))
         # DONE: Find the node at the given index and return its data
         node = self.head
-        for _ in range(index):
+        while index > 0:
             node = node.next
+            index -= 1
         return node.data
 
     def insert_at_index(self, index, item):
@@ -97,21 +98,19 @@ class LinkedList(object):
         # Edge cases: simpler code if it's the first or last index
         if index == 0:
             self.prepend(item)
-        elif index == self.size:
+        if index == self.size:
             self.append(item)
 
-        # Find the node before the given index and insert item after it
-        else:  # 0 < index < self.size
-            previous_index_node = self.head
+        previous_index_node = self.head
 
-            for _ in range(index - 1):
-                previous_index_node = previous_index_node.next
-
-            new_node = Node(item)
-            # new_node.next = node
-            new_node.next = previous_index_node.next
-            previous_index_node.next = new_node
-            self.size += 1
+        while index >= 1:
+            previous_index_node = previous_index_node.next
+            index -= 1
+        new_node = Node(item)
+        # new_node.next = node
+        new_node.next = previous_index_node.next
+        previous_index_node.next = new_node
+        # self.size += 1
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
@@ -127,6 +126,7 @@ class LinkedList(object):
             self.tail.next = new_node
         # Update tail to new node regardless
         self.tail = new_node
+        self.size += 1
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
@@ -142,6 +142,7 @@ class LinkedList(object):
             new_node.next = self.head
         # Update head to new node regardless
         self.head = new_node
+        self.size += 1
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -169,15 +170,12 @@ class LinkedList(object):
         # TODO: Find the node containing the given old_item and replace its
         # data with new_item, without creating a new node object
         node = self.head
-        if node.data == old_item:
-            node.data = new_item
-            return
 
-        while node.next is not None:
-            node = node.next
+        while node is not None:
             if node.data == old_item:
                 node.data = new_item
                 return
+            node = node.next
 
         raise ValueError('The item you are trying to replace is not in this linkedlist')
 
@@ -223,6 +221,7 @@ class LinkedList(object):
                     previous.next = None
                 # Update tail to the previous node regardless
                 self.tail = previous
+            self.size -= 1
         else:
             # Otherwise raise an error to tell the user that delete has failed
             raise ValueError('Item not found: {}'.format(item))
