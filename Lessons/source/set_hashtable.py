@@ -20,27 +20,30 @@ class SetHashTable(object):
         self.hashtable.size = 0
     
     def size(self):
-        pass
+        return self.hashtable.length()
         
     def all_members(self):
         return self.hashtable.items()
 
-    def is_member(self, item):
-        return self.hashtable.contains(item)
+    def is_member(self, key):
+        return self.hashtable.contains(key)
 
-    def insert(self, item):
-        pass
+    def insert(self, key, value):
+        if self.is_member(key) is not True:
+            self.hashtable.set(key, value)
+        raise ValueError('Item is already a member: {}'.format(item))
     
-    def intersection(self, other_set):
+    def union(self, other_set):
         pass
 
-    def union(self, other_set):
+
+    def intersection(self, other_set):
         pass
 
     def subset(self, other_set):
         pass
 
-    def symetric_difference(self, other_set):
+    def symmetric_difference(self, other_set):
         pass
 
     
