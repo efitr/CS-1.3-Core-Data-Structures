@@ -26,7 +26,7 @@ class HashTable(object):
     def load_factor(self):
         """Return the load factor, the ratio of number of entries to buckets.
         Best and worst case running time: ??? under what conditions? [TODO]"""
-        return  self.size/len(self.buckets)
+        return self.size / len(self.buckets)
 
     def keys(self):
         """Return a list of all keys in this hash table.
@@ -132,6 +132,7 @@ class HashTable(object):
         if entry is not None:  # Found
             # Remove the key-value entry from the bucket
             bucket.delete(entry)
+            self.size -= 1
         else:  # Not found
             raise KeyError('Key not found: {}'.format(key))
 
@@ -147,11 +148,17 @@ class HashTable(object):
         # Option to reduce size if buckets are sparsely filled (low load factor)
         elif new_size is 0:
             new_size = len(self.buckets) / 2  # Half size
+
         current_key_values = self.items()
 
-        self.buckets = [LinkedList() for i in range(new_size)]
-        self.size = 0
+        # Given that this same code is on the __init__ method that code can be reused
+        # self.buckets = [LinkedList() for i in range(new_size)]
+        # self.size = 0
 
+        # or
+        # In this scenario we can use the init function
+        self.__init__(new_size)
+        
         for key, value in current_key_values:
             self.set(key, value)
 
