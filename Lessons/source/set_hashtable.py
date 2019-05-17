@@ -15,18 +15,20 @@ from linkedlist import LinkedList, Node
 class SetHashTable(object):
 
     def __init__(self, data=None):
-        pass
+        self.hashtable = HashTable()
+        self.hashtable.buckets = [LinkedList() for i in range(5)]
+        self.hashtable.size = 0
     
     def size(self):
         pass
-    
+        
+    def all_members(self):
+        pass
+
     def contains(self, item):
         pass
 
     def insert(self, item):
-        pass
-    
-    def delete(self, member):
         pass
     
     def intersection(self, other_set):
@@ -40,6 +42,6 @@ class SetHashTable(object):
 
     def symetric_difference(self, other_set):
         pass
-        
+
     
     
