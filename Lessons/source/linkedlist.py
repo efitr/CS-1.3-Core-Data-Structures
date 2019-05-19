@@ -98,8 +98,10 @@ class LinkedList(object):
         # Edge cases: simpler code if it's the first or last index
         if index == 0:
             self.prepend(item)
+            return
         if index == self.size:
             self.append(item)
+            return
 
         previous_index_node = self.head
 
@@ -107,10 +109,9 @@ class LinkedList(object):
             previous_index_node = previous_index_node.next
             index -= 1
         new_node = Node(item)
-        # new_node.next = node
         new_node.next = previous_index_node.next
+        self.size += 1
         previous_index_node.next = new_node
-        # self.size += 1
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
