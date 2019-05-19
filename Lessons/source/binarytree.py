@@ -16,7 +16,7 @@ class BinaryTreeNode(object):
     def is_leaf(self):
         """Return True if this node is a leaf (has no children)."""
         # Check if both left child and right child have no value
-        if self.left and self.right is None:
+        if self.left is None and self.right is None:
             return True
         return False
 
@@ -40,11 +40,11 @@ class BinaryTreeNode(object):
         
         # Recursively go has many level has possible to the left
         if self.left is not None:
-            height_left = self.height(self.left) + 1
+            height_left = self.left.height() + 1
         
         # Recursively go has many level has possible to the right 
         if self.right is not None:
-            height_right = self.height(self.right) + 1
+            height_right = self.right.height() + 1
         
         # Depending on which side ended been the longest you get 
         # the corresponding value
