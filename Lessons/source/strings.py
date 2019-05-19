@@ -2,7 +2,14 @@
 
 # make it be recursive and iterative
 #   The Recursive handles the index, 
+
 def contains(text, pattern):
+    return iterative_contains(text, pattern)
+    # Does not pass the non matching pattern test
+    # return recursive_contains(text, pattern)
+    # return recursive_contains(text, pattern, 0, 0)
+
+def iterative_contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
@@ -12,7 +19,32 @@ def contains(text, pattern):
         return False
     return True
 
+# def recursive_contains(text, pattern, text_index, pattern_index):
+def recursive_contains(text, pattern, text_index = 0, pattern_index = 0):
+    if len(text) <= len(pattern):
+    # If they are the same lenght and equal, it's true
+        if text is pattern:
+            return True
+        return False
 
+    if pattern is '':
+        return True
+    
+
+    if pattern_index is len(pattern) - 1:
+        return True
+
+    if text_index is len(text) - 1 and text[len(text) - 1] is not pattern[0]:
+        return False
+    
+        
+    # This is checking for every point in the 
+    if text[text_index] is pattern[pattern_index]:
+        # if len(pattern)
+        return recursive_contains(text, pattern, text_index + 1, pattern_index + 1)
+
+    if text[text_index] is not pattern[pattern_index]:
+        return recursive_contains(text, pattern, text_index + 1, 0)
 
 
 def find_index(text, pattern):
