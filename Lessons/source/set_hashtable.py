@@ -32,7 +32,11 @@ class SetHashTable(object):
         if self.is_member(key) is True:
             raise ValueError('Item is already a member: {}'.format(key))
         self.hashtable.set(key, value)
-        
+    
+    def remove(self, key):
+        if self.is_member(key) is False:
+            raise ValueError('Item is not a member: {}'.format(key))
+        return self.hashtable.delete(key)
     
     def union(self, other_set):
         new_set = SetHashTable()
