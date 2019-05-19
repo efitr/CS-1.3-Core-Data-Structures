@@ -97,7 +97,7 @@ class StringsTest(unittest.TestCase):
         assert find_all_indexes('aaa', 'aa') == [0, 1]  # overlapping pattern
         # DONE: Write more positive test cases with assert equal list statements
         assert find_all_indexes('tttrrasa', 'a') == [5, 7] 
-        assert find_all_indexes('lalalaalalalalaaa', 'aa') == [5, 14] 
+        assert find_all_indexes('lalalaalalalalaaa', 'aa') == [5, 14, 15] 
 
     def test_find_all_indexes_with_non_matching_patterns(self):
         # Negative test cases (counterexamples) with non-matching patterns
@@ -122,7 +122,7 @@ class StringsTest(unittest.TestCase):
         assert find_all_indexes('abra cadabra', 'abra') == [0, 8]  # multiple occurrences
         assert find_all_indexes('abra cadabra', 'adab') == [6]  # overlapping prefix
         # DONE: Write more test cases that check complex patterns or edge cases
-        assert find_all_indexes('lololalalleel maruchan', 'la') == [4]
+        assert find_all_indexes('lololalalleel maruchan', 'la') == [4, 6]
         assert find_all_indexes('uja puja juja jji', 'j') == [1, 6, 9, 11, 14, 15]
         
 
