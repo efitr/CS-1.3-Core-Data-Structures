@@ -9,8 +9,9 @@ from math import ceil
 
 def clean(palindrome):
     palindrome = palindrome.lower()
-    palindrome = palindrome.replace(" ", "")
-    #Add punctuation remover
+    for letter in palindrome:
+        if ord(letter) < 97 or ord(letter) > 122:
+            palindrome = palindrome.replace(letter, "")
     return palindrome
 
 def is_palindrome(text):
