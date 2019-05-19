@@ -32,5 +32,15 @@ class HashTableTest(unittest.TestCase):
         assert set_ht.is_member('J') is True
         assert set_ht.is_member('A') is False
 
+    def test_size(self):
+        set_ht = SetHashTable(5)
+        assert set_ht.size() == 0
+        set_ht.insert('I', 1)
+        assert set_ht.size() == 1
+        set_ht.insert('V', 5)
+        assert set_ht.size() == 2
+        set_ht.insert('X', 10)
+        assert set_ht.size() == 3
+
 if __name__ == '__main__':
     unittest.main()
