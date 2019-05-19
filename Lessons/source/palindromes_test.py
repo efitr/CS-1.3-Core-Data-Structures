@@ -6,9 +6,16 @@ import unittest
 
 class TestPalindromes(unittest.TestCase):
 
-    def test_is_palindrome_with_mirrored_strings(self):
+    def test_empty_string(self):
         # palindromes that are perfectly mirrored strings
         assert is_palindrome('') is True  # base case
+
+    def test_is_palindrome_with_just_one_letter(self):
+        # palindromes that are perfectly mirrored strings
+        assert is_palindrome('A') is True  # base case
+
+    def test_is_palindrome_with_mirrored_strings(self):
+        # palindromes that are perfectly mirrored strings
         assert is_palindrome('A') is True  # base case
         assert is_palindrome('BB') is True  # even length
         assert is_palindrome('LOL') is True  # odd length
