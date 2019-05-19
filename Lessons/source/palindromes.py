@@ -1,7 +1,7 @@
 #!python
 
 import string
-from math import ceil
+from math import ceil, floor
 # Hint: Use these string constants to ignore capitalization and/or punctuation
 # string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -20,6 +20,7 @@ def is_palindrome(text):
     # implement is_palindrome_iterative and is_palindrome_recursive below, then
     # change this to call your implementation to verify it passes all tests
     assert isinstance(text, str), 'input is not a string: {}'.format(text)
+    text = clean(text)
     # return is_palindrome_iterative(text)
     return is_palindrome_recursive(text)
 
@@ -28,7 +29,6 @@ def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
     # once implemented, change is_palindrome to call is_palindrome_iterative
     # to verify that your iterative implementation passes all tests
-    text = clean(text)
     if text == '':
         return True
 
@@ -55,17 +55,18 @@ def is_palindrome_recursive(text, first_index=None, last_index=None):
         if len(text) == 1:
             return True
 
-        text = clean(text)
         # left and right both must be indexes
         first_index = 0
         last_index = len(text)-1
+
+    # len = 7, middle = 4
     middle_position = ceil(len(text)/2)
 
-    if text[first_index] == text[last_index]:
+    if text[first_index] is text[last_index]:
         
-        if first_index == middle_position:
+        if last_index == middle_position:
             return True
-        is_palindrome_recursive(text, first_index=first_index+1, last_index=last_index-1)
+        return is_palindrome_recursive(text, first_index=first_index+1, last_index=last_index-1)
 
     return False
 
