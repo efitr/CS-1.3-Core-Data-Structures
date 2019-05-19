@@ -4,8 +4,8 @@ def linear_search(array, item):
     """return the first index of item in array or None if item is not found"""
     # implement linear_search_iterative and linear_search_recursive below, then
     # change this to call your implementation to verify it passes all tests
-    return linear_search_iterative(array, item)
-    # return linear_search_recursive(array, item)
+    # return linear_search_iterative(array, item)
+    return linear_search_recursive(array, item)
 
 
 def linear_search_iterative(array, item):
@@ -26,7 +26,8 @@ def linear_search_recursive(array, item, index=0):
 
 def binary_search(array, item):
     """return the index of item in sorted array or None if item is not found"""
-    return binary_search_recursive(array, item)
+    # return binary_search_recursive(array, item)
+    return binary_search_iterative(array, item)
 
 
 def binary_search_iterative(array, item):
@@ -75,23 +76,12 @@ def binary_search_recursive(array, item, left=None, right=None):
         if item == array[right]:
             return right
         left = half + 1
-        
+
     elif item < array[half]:
         if item == array[left]:
             return left
         right = half - 1
 
-    # if item == array[right]:
-    #     return right
-    # if item > array[half]:
-    #     left = half + 1
-        # return binary_search_recursive(array, item, half + 1, right)
-
-    # if item == array[left]:
-    #     return left
-    # if item < array[half]:
-    #     right = half - 1
-        # return binary_search_recursive(array, item, left, half - 1)
     return binary_search_recursive(array, item, left, right)
     
 
