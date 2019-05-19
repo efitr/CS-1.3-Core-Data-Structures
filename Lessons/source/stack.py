@@ -10,7 +10,7 @@ class LinkedStack(object):
     def __init__(self, iterable=None):
         """Initialize this stack and push the given items, if any."""
         # Initialize a new linked list to store the items
-        self.list = LinkedList()
+        self.linked_list = LinkedList()
         if iterable is not None:
             for item in iterable:
                 self.push(item)
@@ -22,35 +22,35 @@ class LinkedStack(object):
     def is_empty(self):
         """Return True if this stack is empty, or False otherwise."""
         # TODO: Check if empty
-        if self.list.size == 0:
+        if self.linked_list.size == 0:
             return True
         else:
             return False
 
     def length(self):
         """Return the number of items in this stack."""
-        return self.list.size
+        return self.linked_list.size
 
     def push(self, item):
         """Insert the given item on the top of this stack.
         Running time: O(???) – Why? [TODO]"""
-        self.list.prepend(item) 
+        self.linked_list.prepend(item) 
 
     def peek(self):
         """Return the item on the top of this stack without removing it,
         or None if this stack is empty."""
-        if self.list.is_empty():
+        if self.linked_list.is_empty():
             return None
         else:
-            return self.list.get_at_index(0)
+            return self.linked_list.get_at_index(0)
 
     def pop(self):
         """Remove and return the item on the top of this stack,
         or raise ValueError if this stack is empty.
         Running time: O(???) – Why? [TODO]"""
-        if not self.list.is_empty():
-            item = self.list.head.data
-            self.list.delete(item)
+        if not self.linked_list.is_empty():
+            item = self.linked_list.head.data
+            self.linked_list.delete(item)
             return item
         else:
             raise ValueError('The stack is empty')
@@ -63,7 +63,7 @@ class ArrayStack(object):
     def __init__(self, iterable=None):
         """Initialize this stack and push the given items, if any."""
         # Initialize a new list (dynamic array) to store the items
-        self.list = list()
+        self.python3_dynamic_array = list()
         if iterable is not None:
             for item in iterable:
                 self.push(item)
@@ -74,27 +74,26 @@ class ArrayStack(object):
 
     def is_empty(self):
         """Return True if this stack is empty, or False otherwise."""
-        if len(self.list) == 0:
+        if len(self.python3_dynamic_array) == 0:
             return True
-        else:
-            return False
+        return False
 
     def length(self):
         """Return the number of items in this stack."""
-        return len(self.list)
+        return len(self.python3_dynamic_array)
 
     def push(self, item):
         """Insert the given item on the top of this stack.
-        Running time: O(???) – Why? [TODO]"""
-        self.list.append(item)
+        Running time: O(1) – Why? You are always appending to the top of the meaning 
+        end of the list [TODO]"""
+        self.python3_dynamic_array.append(item)
 
     def peek(self):
         """Return the item on the top of this stack without removing it,
         or None if this stack is empty."""
         if self.is_empty():
             return None
-        else:
-            return 
+        return self.python3_dynamic_array[len(self.python3_dynamic_array)-1]
 
     def pop(self):
         """Remove and return the item on the top of this stack,
@@ -102,6 +101,7 @@ class ArrayStack(object):
         Running time: O(???) – Why? [TODO]"""
         if self.is_empty():
             raise ValueError('The stack is empty')
+        return self.python3_dynamic_array.pop()
 
 
 # Implement LinkedStack and ArrayStack above, then change the assignment below
