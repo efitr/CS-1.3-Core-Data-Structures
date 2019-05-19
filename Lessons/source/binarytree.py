@@ -1,5 +1,5 @@
 #!python
-from queue import LinkedQueue
+from queue import LinkedQueue, LinkedList
 
 class BinaryTreeNode(object):
 
@@ -287,10 +287,10 @@ class BinarySearchTree(object):
         visit(node.data)
         # TODO: Traverse left subtree, if it exists
         if node.left is not None:
-            self._traverse_in_order_recursive(node.left, visit)
+            self._traverse_pre_order_recursive(node.left, visit)
         # TODO: Traverse right subtree, if it exists
         if node.right is not None:
-            self._traverse_in_order_recursive(node.right, visit)
+            self._traverse_pre_order_recursive(node.right, visit)
 
     def _traverse_pre_order_iterative(self, node, visit):
         """Traverse this binary tree with iterative pre-order traversal (DFS).
@@ -315,10 +315,10 @@ class BinarySearchTree(object):
         TODO: Memory usage: O(log n) if it's balanced nad O(n) if its not balanced?"""
         # TODO: Traverse left subtree, if it exists
         if node.left is not None:
-            self._traverse_in_order_recursive(node.left, visit)
+            self._traverse_post_order_recursive(node.left, visit)
         # TODO: Traverse right subtree, if it exists
         if node.right is not None:
-            self._traverse_in_order_recursive(node.right, visit)
+            self._traverse_post_order_recursive(node.right, visit)
         # TODO: Visit this node's data with given function
         visit(node.data)
 
@@ -355,10 +355,10 @@ class BinarySearchTree(object):
             visit(node.data)
             # TODO: Enqueue this node's left child, if it exists
             if node.left is not None:
-                node.enqueue(node.left)
+                queue.enqueue(node.left)
             # TODO: Enqueue this node's right child, if it exists
             if node.right is not None:
-                node.enqueue(node.right)
+                queue.enqueue(node.right)
 
 
 def test_binary_search_tree():
