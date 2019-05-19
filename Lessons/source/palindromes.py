@@ -21,8 +21,8 @@ def is_palindrome(text):
     # change this to call your implementation to verify it passes all tests
     assert isinstance(text, str), 'input is not a string: {}'.format(text)
     text = clean(text)
-    # return is_palindrome_iterative(text)
-    return is_palindrome_recursive(text)
+    return is_palindrome_iterative(text)
+    # return is_palindrome_recursive(text)
 
 
 def is_palindrome_iterative(text):
