@@ -58,14 +58,20 @@ def find_all_indexes(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_all_indexes here (iteratively and/or recursively)
-    if contains(text, pattern) is False:
-        return []
-        
+    
     all_indexes = []
 
-    if pattern == '':
-        for index in range(len(pattern)):
-            print('This is the index', index)
+    if len(text) <= len(pattern):
+    # If they are the same lenght and equal, it's true
+        if text is pattern:
+            return [0]
+        return all_indexes
+        
+    if contains(text, pattern) is False:
+        return all_indexes
+
+    if pattern is '':
+        for index in range(len(text)):
             all_indexes.append(index)
         return all_indexes
 
@@ -73,13 +79,14 @@ def find_all_indexes(text, pattern):
 
         # the len of the text is lower than index + pattern len
         if len(text) < index + len(pattern):
-            return None
+            return all_indexes
 
         if text[index] is pattern[0]:
             for pattern_index, letter in enumerate(pattern):
 
                 if text[index + pattern_index] is not letter:
                     break
+                    
                 if pattern_index is len(pattern) - 1:
                     all_indexes.append(index)
 
