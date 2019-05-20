@@ -21,6 +21,9 @@ class SetHashTable(object):
     
     def length(self):
         return self.hashtable.length()
+
+    def all_keys(self):
+        return self.hashtable.keys()
         
     def all_members(self):
         return self.hashtable.items()
@@ -42,10 +45,11 @@ class SetHashTable(object):
     
     def union(self, some_set, other_set):
         new_set = SetHashTable(5)
-        for index, member in some_set.all_members():
-            new_set.insert(index, member)
-        for index, member in other_set.all_members():
-            new_set.insert(index, member)
+        for key, member in some_set.all_members():
+            new_set.insert(key, member)
+        for key, member in other_set.all_members():
+            if new_set.is_member(key) is False:
+                new_set.insert(key, member)
         return new_set
 
     def intersection(self, some_set, other_set):
@@ -70,7 +74,7 @@ class SetHashTable(object):
         intersection_set = SetHashTable(5)
         intersection_set = intersection_set.intersection(some_set, other_set)
         
-        for key, member in intersection_set.all_members():
+        for key in intersection_set.all_keys():
             if union_set.is_member(key):
                 union_set.remove(key)
         return union_set
@@ -91,8 +95,8 @@ class SetHashTable(object):
         
 
     # Here you are seeing if the 
-    def subset(self, some_set, other_set):
-        for key, member in other_set.all_members():
-            if not some_set.is_member(key, member):
+    def subset(self, other_set):
+        for key in self.all_keys():
+            if not other_set.is_member(key):
                 return False
         return True
