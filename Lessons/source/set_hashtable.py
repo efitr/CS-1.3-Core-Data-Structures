@@ -63,11 +63,36 @@ class SetHashTable(object):
                 new_set.insert(key, member)
         return new_set
 
-    def subset(self, other_set):
-        pass
+    def symmetric_difference(self, some_set, other_set):
+        union_set = SetHashTable(5)
+        union_set = union_set.union(some_set, other_set)
 
-    def symmetric_difference(self, other_set):
-        pass
+        intersection_set = SetHashTable(5)
+        intersection_set = intersection_set.intersection(some_set, other_set)
+        
+        for key, member in intersection_set.all_members():
+            if union_set.is_member(key):
+                union_set.remove(key)
+        return union_set
 
-    
-    
+
+        # Optimization to do the operation over the bigger set
+        # if some_set.length() >= other_set.length():
+        #     for key, member in some_set.all_members():
+        #         if not other_set.is_member(key):
+        #             new_set.insert(key, member)
+        #     return new_set
+        # # all 
+        # for member in other_set.all_members():
+        #     if not some_set.is_member(key):
+        #         new_set.insert(key, member)
+        # return new_set
+
+        
+
+    # Here you are seeing if the 
+    def subset(self, some_set, other_set):
+        for key, member in other_set.all_members():
+            if not some_set.is_member(key, member):
+                return False
+        return True
