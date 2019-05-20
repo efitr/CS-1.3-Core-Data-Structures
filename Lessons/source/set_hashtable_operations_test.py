@@ -19,7 +19,6 @@ class HashTableTest(unittest.TestCase):
 
         assert new_set.size == 2
 
-
     def test_union_medium_sets(self):
         set_ht = SetHashTable(5)
         set_ht.insert('A', 5)
@@ -35,7 +34,6 @@ class HashTableTest(unittest.TestCase):
         new_set = new_set.union(set_ht, other_set_ht)
 
         assert new_set.length() == 6
-
 
     def test_union_large_sets(self):
         set_ht = SetHashTable(5)
@@ -70,7 +68,6 @@ class HashTableTest(unittest.TestCase):
         assert new_set.is_member('D') == True
         assert new_set.is_member('E') == True
         assert new_set.is_member('F') == True
-
 
     def test_intersection_small_sets(self):
         set_ht = SetHashTable(5)
@@ -123,41 +120,107 @@ class HashTableTest(unittest.TestCase):
         assert new_set.is_member('D') == True
         assert new_set.is_member('E') == True
         assert new_set.is_member('F') == True
-        assert new_set.is_member('J') == False
-        assert new_set.is_member('K') == False
-        assert new_set.is_member('L') == False
+        assert new_set.is_member('A') == False
+        assert new_set.is_member('C') == False
+        assert new_set.is_member('I') == False
 
     
-    # def test_symetric_difference_small_sets(self):
-    #     set_ht = SetHashTable()
+    def test_symetric_difference_small_sets(self):
+        set_ht = SetHashTable(5)
+        set_ht.insert('A', 5)
 
-    #     other_set_ht = SetHashTable()
+        other_set_ht = SetHashTable(5)
+        other_set_ht.insert('T', 1)
 
-    # def test_symetric_difference_medium_sets(self):
-    #     set_ht = SetHashTable()
+        new_set = SetHashTable(5)
+        new_set = new_set.symmetric_difference(set_ht, other_set_ht)
 
-    #     other_set_ht = SetHashTable()
+        assert new_set.size == 2
 
-    # def test_symetric_difference_large_sets(self):
-    #     set_ht = SetHashTable()
+    def test_symetric_difference_medium_sets(self):
+        set_ht = SetHashTable(5)
+        set_ht.insert('A', 5)
+        set_ht.insert('B', 1)
+        set_ht.insert('C', 4)
+        
+        other_set_ht = SetHashTable(5)
+        other_set_ht.insert('A', 9)
+        other_set_ht.insert('B', 8)
+        other_set_ht.insert('U', 7)
 
-    #     other_set_ht = SetHashTable()
+        new_set = SetHashTable(5)
+        new_set = new_set.symmetric_difference(set_ht, other_set_ht)
 
+        assert new_set.length() == 2
+
+    def test_symetric_difference_large_sets(self):
+        set_ht = SetHashTable(5)
+        set_ht.insert('A', 1)
+        set_ht.insert('B', 2)
+        set_ht.insert('C', 3)
+        set_ht.insert('D', 4)
+        set_ht.insert('E', 5)
+        set_ht.insert('F', 6)
+        
+        other_set_ht = SetHashTable(5)
+        other_set_ht.insert('G', 7)
+        other_set_ht.insert('H', 8)
+        other_set_ht.insert('I', 9)
+        other_set_ht.insert('D', 10)
+        other_set_ht.insert('E', 11)
+        other_set_ht.insert('F', 12)
     
-    # def test_is_subset_small_sets(self):
-    #     set_ht = SetHashTable()
+        new_set = SetHashTable(5)
+        new_set = new_set.symmetric_difference(set_ht, other_set_ht)
 
-    #     other_set_ht = SetHashTable()
+        assert new_set.is_member('G') == True
+        assert new_set.is_member('H') == True
+        assert new_set.is_member('I') == True
+        assert new_set.is_member('A') == True
+        assert new_set.is_member('B') == True
+        assert new_set.is_member('C') == True
+        assert new_set.is_member('D') == False
+        assert new_set.is_member('E') == False
+        assert new_set.is_member('F') == False
+    
+    def test_is_subset_small_sets(self):
+        set_ht = SetHashTable(5)
+        set_ht.insert('A', 5)
 
-    # def test_is_subset_medium_sets(self):
-    #     set_ht = SetHashTable()
+        other_set_ht = SetHashTable(5)
+        other_set_ht.insert('T', 1)
 
-    #     other_set_ht = SetHashTable()
+        assert set_ht.subset(other_set_ht) == False
 
-    # def test_is_subset_large_sets(self):
-    #     set_ht = SetHashTable()
+    def test_is_subset_medium_sets(self):
+        set_ht = SetHashTable(5)
+        set_ht.insert('A', 5)
+        
+        other_set_ht = SetHashTable(5)
+        other_set_ht.insert('A', 9)
+        other_set_ht.insert('B', 8)
+        other_set_ht.insert('U', 7)
 
-    #     other_set_ht = SetHashTable()
+        assert set_ht.subset(other_set_ht) == True
+
+    def test_is_subset_large_sets(self):
+        set_ht = SetHashTable(5)
+        set_ht.insert('G', 1)
+        set_ht.insert('H', 2)
+        set_ht.insert('I', 3)
+        set_ht.insert('D', 4)
+        set_ht.insert('E', 5)
+        set_ht.insert('F', 6)
+        
+        other_set_ht = SetHashTable(5)
+        other_set_ht.insert('G', 7)
+        other_set_ht.insert('H', 8)
+        other_set_ht.insert('I', 9)
+        other_set_ht.insert('D', 10)
+        other_set_ht.insert('E', 11)
+        other_set_ht.insert('F', 12)
+    
+        assert set_ht.subset(other_set_ht) == True
 
 
 if __name__ == '__main__':
